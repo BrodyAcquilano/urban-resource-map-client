@@ -129,8 +129,6 @@ const res = await axios.get("/api/locations");
 - **Dev Tools**: Nodemon, Concurrently, ESLint, Vite Plugin React
 - **Environment Management**: dotenv (for .env config), CORS (for cross-origin access)
 
-
-
 ---
 
 ## 📦 Notable Dependencies
@@ -157,6 +155,8 @@ These packages power the core features of the application:
 | **eslint**           | Lints and enforces code style                              |
 | **react-dom**        | Renders React components to the DOM                        |
 
+---
+
 ## 🧪 Dev-Only Dependencies
 
 These packages are used during development only (not bundled into production builds):
@@ -174,6 +174,8 @@ These packages are used during development only (not bundled into production bui
 | **nodemon**                     | Auto-restarts the backend server on file changes              |
 | **concurrently**                | Runs multiple commands/scripts at once (used in dev workflow) |
 
+---
+
 ## 🧠 App Structure & Routing
 
 The `App.jsx` file serves as the root of the application. It contains:
@@ -182,7 +184,7 @@ The `App.jsx` file serves as the root of the application. It contains:
 - Route definitions for three main pages:
   - `/` → **Home Page**: View nearby resources
   - `/export` → **Export Page**: Generate and export maps as PDFs
-    - `/analysis` → **Analysis Page**: Generate Heatmaps based on different metrics.
+  - `/analysis` → **Analysis Page**: Generate Heatmaps based on different metrics.
 
 These pages share global state (markers, filters, etc.) to avoid redundant reloads. Changing pages doesn’t reset filters or trigger new fetches unless needed.
 
@@ -271,6 +273,8 @@ This app can be customized for:
 - 🧘‍♀️ Community wellness directories
 
 Its modular data structure allows the same core system to support new applications by simply changing the data model and UI copy.
+
+---
 
 ## 🌍 Beyond Emergency Services — What This Platform Can Become
 
@@ -362,6 +366,8 @@ This platform is a **general-purpose, spatial data management interface** with:
 - 📊 Exportable insights
 
 And it can be customized to serve nearly **any industry that works with location-based data.**
+
+---
 
 ## ⚡ Rapid Pinning Mode (Symbol-Only Marker Inventory)
 
