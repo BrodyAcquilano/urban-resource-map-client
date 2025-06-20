@@ -1,11 +1,13 @@
-# Urban Resource Map
+# 🌐 Urban Resource Map (Client Version)
 
-A full-stack web app for mapping urban resources like water fountains, food banks, libraries, and more.
+A full-stack web app for exploring free public resources like food banks, washrooms, water fountains, libraries, and more.
+
+This version is read-only and designed for public users — filter, view, and export location data using an interactive map.
 
 Built with:
 
 - React + Vite (frontend)
-- Express + MongoDB (backend)
+- Express + MongoDB (read-only backend)
 - Leaflet for interactive maps
 
 ---
@@ -27,6 +29,8 @@ Built with:
    ```
 
    > 🔐 Do not commit your `.env` file — it is ignored by `.gitignore`.
+
+✅ In local development, a proxy handles /api requests, so VITE_API_URL is optional if using localhost.
 
 4. **Start the development servers**:
    ```bash
@@ -89,16 +93,71 @@ MONGO_URI=your-mongodb-connection-string-here
 VITE_API_URL=your-vite-api-base-url
 ```
 
+> 🧠 `VITE_API_URL` is required for **production environments** (e.g. Vercel and Render deployment).  
+> It’s used in `App.jsx` to connect to your Express API. Without it, **data loading will fail** — especially on hosted versions.
+
+In `App.jsx`, this line defines the base path for API requests:
+
+```js
+const BASE_URL = import.meta.env.VITE_API_URL;
+```
+
+API requests are made using that constant:
+
+```js
+const res = await axios.get(`${BASE_URL}/api/locations`);
+```
+
+To run locally, you can remove the `BASE_URL` reference and use a relative path:
+
+```js
+const res = await axios.get("/api/locations");
+```
+
+> ✅ Local development works without `VITE_API_URL` because the Vite dev server is configured to proxy API requests to the Express backend.
+
 ---
 
 ## 🧱 Tech Stack
 
 - **Frontend**: React, Vite, Leaflet, React-Leaflet, React Router DOM
-- **Backend**: Express, Node.js
-- **Database**: MongoDB Atlas (cloud-hosted)
-- **Dev Tools**: Nodemon, Concurrently, ESLint
+- **Visualization**: Turf.js (for spatial calculations), html2canvas + jsPDF (for exports)
+- **Data Fetching**: Axios (connects to backend API)
+- **Backend (Read-Only)**: Express (API server), MongoDB Atlas (cloud database)
+- **Environment Management**: dotenv (for .env config), CORS (for cross-origin access)
 
 ---
+
+## 📦 Notable Dependencies
+
+| Package                     | Purpose                                                         |
+| --------------------------- | --------------------------------------------------------------- |
+| `react` / `react-dom`       | Core UI components and rendering                                |
+| `react-router-dom`          | Page navigation and routing                                     |
+| `leaflet` / `react-leaflet` | Map rendering and interactivity                                 |
+| `axios`                     | Making HTTP requests to the backend                             |
+| `@turf/turf`                | Generating overlays, scoring zones, heatmaps, etc.              |
+| `express`                   | Backend API for fetching location data                          |
+| `mongodb`                   | Connects backend to MongoDB Atlas for read-only queries         |
+| `cors`                      | Enables cross-origin requests (especially for deployment)       |
+| `dotenv`                    | Loads environment variables (e.g., `MONGO_URI`, `VITE_API_URL`) |
+| `html2canvas`, `jspdf`      | Used for generating exports as image/PDF (in Export Page)       |
+
+---
+
+## 🧪 Dev Dependencies
+
+| Package                            | Purpose                                       |
+| ---------------------------------- | --------------------------------------------- |
+| `vite`                             | Frontend build tool and dev server            |
+| `nodemon`                          | Auto-reloads backend server on changes        |
+| `concurrently`                     | Runs frontend and backend in parallel for dev |
+| `eslint`, `@eslint/js`             | Linting rules                                 |
+| `eslint-plugin-react-hooks`        | Linting for React hooks                       |
+| `eslint-plugin-react-refresh`      | React Fast Refresh compatibility for ESLint   |
+| `@types/react`, `@types/react-dom` | Type hints for editor (even if TS not used)   |
+| `@vitejs/plugin-react`             | React plugin for Vite build process           |
+| `globals`                          | Defines global variables for ESLint           |
 
 ## 🧠 App Structure & Routing
 
@@ -155,17 +214,15 @@ Find free resources based on user-selected filters — without needing to search
 - Adding seasonal or hourly resource awareness (e.g. warming centre in winter only)
 
 ### 📊 Data Analysis (Analysis Page)
+
 Analyze existing location data to identify patterns, gaps, and opportunities for improvement. Includes tools for:
 
-Generating heatmaps based on available services, resources, or amenities
+- Generating heatmaps based on available services, resources, or amenities
+- Visualizing zone coverage using color-coded overlays (green = strong, red = weak)
+- Filtering by service type to compare resource distribution across different needs
 
-Visualizing zone coverage using color-coded overlays (green = strong, red = weak)
-
-Filtering by service type to compare resource distribution across different needs
-
-Supporting decision-making for outreach planning, shelter placement, or infrastructure expansion
-
-Note: This page uses built-in score data and does not require user input or manual scoring. Admins can manage scores separately in the full version.
+> ⚠️ This version uses built-in score data only.  
+> Manual scoring is disabled in the client version.
 
 ### 🖨 Export Tools (Export Page)
 
@@ -179,11 +236,11 @@ Generate PDF maps with filtered results for offline use or sharing with:
 
 ## 🔮 Future Improvements
 
-- ✅ Add scoring logic to highlight strong/weak areas
-- ✅ Add seasonal/time filters to track shifting availability
-- ✅ Add user login or role-based permissions for editing
-- ✅ Export full-page PDFs with custom map overlays
-- ✅ Add import/export buttons for bulk JSON or CSV data
+- 🔒 Add optional login system to restrict access to a private admin version (link both client and admin versions)
+- 🧭 Add richer visual overlays for accessibility, mobility, or walkability zones
+- 📅 Add dynamic seasonal or time-based filters with real-time awareness
+- 🧰 Allow toggling custom filters for different community needs
+- 💬 Add multilingual support for more inclusive access
 
 ---
 
@@ -238,8 +295,6 @@ This app is not just a viewer — it lets admins or analysts interact with spati
 - Visualize all markers by category, type, or zone
 - Highlight problem areas (e.g., resource deserts or high-risk zones)
 - Plan spatial relationships (e.g., buffer zones, coverage gaps)
-
-
 
 ### 3. **Resource Management**
 

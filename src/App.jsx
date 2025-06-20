@@ -17,7 +17,7 @@ import OffscreenMap from "./components/OffscreenMap.jsx";
 // ─────────────────────────────────────────────
 import Home from "./pages/Home.jsx";
 import Export from "./pages/Export.jsx";
-import Analysis from "./pages/Analysis.jsx"
+import Analysis from "./pages/Analysis.jsx";
 
 // ─────────────────────────────────────────────
 // 🗺 Tile Style Options (Leaflet + OpenStreetMap)
@@ -40,7 +40,7 @@ function App() {
   const [tileStyle, setTileStyle] = useState("Standard"); // Current tile map style
   const [mapCenter, setMapCenter] = useState([43.4516, -80.4925]);
   const [mapZoom, setMapZoom] = useState(13);
-  const [heatMap, setHeatMap]=useState([]);
+  const [heatMap, setHeatMap] = useState([]);
 
   const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -67,7 +67,7 @@ function App() {
   // For example:
   // - Switching between Home, Export or Analysis keeps the same filtered markers.
   // - Shared components (e.g. MapPanel) remain mounted and responsive to updates.
-  // - Only new route-specific panels (like modals or editors) get reloaded on navigation.
+  // - Only new route-specific panels (like modals or options panels) get reloaded on navigation.
   //
   // This design improves performance and enables smooth workflow transitions.
 
@@ -137,14 +137,9 @@ function App() {
               />
             }
           />
-           <Route
+          <Route
             path="/analysis"
-            element={
-              <Analysis
-              markers={markers}
-              setHeatMap={setHeatMap}
-              />
-            }
+            element={<Analysis markers={markers} setHeatMap={setHeatMap} />}
           />
         </Routes>
       </div>
@@ -164,7 +159,7 @@ export default App;
 // - Data that should persist between page changes (e.g. React Router navigation).
 // - Shared state across components (e.g. filters, selected markers, base data).
 // - Things that improve performance and user experience by avoiding unnecessary reloads.
-
+//
 // Keeping state here improves efficiency, modularity, and functional consistency across routes.
 
 // ─────────────────────────────
@@ -195,10 +190,10 @@ export default App;
 //   But this is not the same as tracking:
 //   “Location open” at time T ⧸= “Resource available” at time T.
 
-// Possible upgrade: layered data model for specific-time availability.
-
+// ▶ Input → Database (marker data)
 // ▶ Input → FilterPanel.jsx (user filters)
 // ▶ Output → MapPanel.jsx (filtered markers on map)
+
 
 // ── 📄 EXPORT WORKFLOW (Export Page) ──
 // Purpose: Share map data with others — especially those without digital access or with accessibility needs.
@@ -210,25 +205,45 @@ export default App;
 
 // Integration with viewing controls:
 // - Export uses the same filter panel as the map view
-// - No need to reconfigure settings — preview updates live
+// - A hidden map instance (OffscreenMap.jsx) renders in the background to create clean, printable images
 // - Once filtered, user can export a ready-to-use PDF
 
-// ▶ Input → ExportOptionsPanel.jsx (export controls)
-// ▶ Output → ExportPreviewModal.jsx (PDF preview & export)
-// ▶ Shared Input → FilterPanel.jsx
-// ▶ Shared Output → MapPanel.jsx
+// ▶ Input → Database (filtered markers from base data)
+// ▶ Input → FilterPanel.jsx (controls applied to dataset)
+// ▶ Input → ExportOptions.jsx (custom export settings)
+// ▶ Output → OffscreenMap.jsx (snapshot layer)
+// ▶ Output → ExportPreviewModal.jsx (PDF preview/export)
 
+
+// ── 📊 ANALYSIS WORKFLOW (Analysis Page) ──
+// Purpose: View and update score-based overlays used in resource analysis and planning.
+
+// Core features:
+// - Heatmaps and service zones reflect score data from the database
+// - Filter-based overlays (e.g. combinations of resources, services, or amenities)
+// - Visual output updates based on filters.
+
+// This page is read-only in the client version:
+// - Users cannot submit scores or edit data
+// - Score values are pre-calculated and stored with the location data
+// - Limited Options for analysis (uses preset values for decay or buffer radius)
+
+// ▶ Input → Database (pre-existing score data)
+// ▶ Input → AnalysisOptions.jsx (filters and analysis type)
+// ▶ Shared Output → MapPanel.jsx
+// ▶ Output → HeatMapLayer.jsx (overlay visualization)
 
 
 // ─────────────────────────────
 // 🔁 STREAM FLOW SUMMARIES
 // ─────────────────────────────
 
-// Add Workflow:
-// Input → AddLocationModal.jsx → FilterPanel.jsx → MapPanel.jsx → Output
+// Viewing Controls Workflow:
+// Input → Database → FilterPanel.jsx → MapPanel.jsx → Output (visible markers)
 
 // Export Workflow:
-// Input → FilterPanel.jsx → MapPanel.jsx → ExportPreviewModal.jsx → PDF
+// Input → Database → FilterPanel.jsx → ExportOptions.jsx → OffscreenMap.jsx → ExportPreviewModal.jsx → PDF
 
 // Analysis Workflow:
-// Input → AnalysisOptions.jsx → MapPanel.jsx → HeatMapLayer.jsx->Output
+// Input → Database → AnalysisOptions.jsx → MapPanel.jsx → HeatMapLayer.jsx → Output
+
