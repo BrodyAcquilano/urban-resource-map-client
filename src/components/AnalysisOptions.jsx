@@ -306,7 +306,7 @@ function AnalysisOptions({ markers, setHeatMap }) {
         </div>
       </div>
 
-      <div className="options-section">
+      <div className="legend">
         <h4>Color Legend:</h4>
         <ul>
           <li>

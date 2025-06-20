@@ -43,6 +43,10 @@
   padding:10px;
 }
 
+.legend{
+  padding:10px;
+}
+
 .analysis-buttons {
   display: flex;
   justify-content: center;
