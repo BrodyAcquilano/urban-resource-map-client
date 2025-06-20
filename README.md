@@ -135,34 +135,44 @@ const res = await axios.get("/api/locations");
 
 ## 📦 Notable Dependencies
 
-| Package                     | Purpose                                                         |
-| --------------------------- | --------------------------------------------------------------- |
-| `react` / `react-dom`       | Core UI components and rendering                                |
-| `react-router-dom`          | Page navigation and routing                                     |
-| `leaflet` / `react-leaflet` | Map rendering and interactivity                                 |
-| `axios`                     | Making HTTP requests to the backend                             |
-| `@turf/turf`                | Generating overlays, scoring zones, heatmaps, etc.              |
-| `express`                   | Backend API for fetching location data                          |
-| `mongodb`                   | Connects backend to MongoDB Atlas for read-only queries         |
-| `cors`                      | Enables cross-origin requests (especially for deployment)       |
-| `dotenv`                    | Loads environment variables (e.g., `MONGO_URI`, `VITE_API_URL`) |
-| `html2canvas`, `jspdf`      | Used for generating exports as image/PDF (in Export Page)       |
+These packages power the core features of the application:
 
----
+| Package              | Purpose                                                    |
+| -------------------- | ---------------------------------------------------------- |
+| **react**            | Frontend UI framework                                      |
+| **vite**             | Lightning-fast development/build tool                      |
+| **express**          | Backend API server                                         |
+| **mongodb**          | NoSQL database for location and score data                 |
+| **react-router-dom** | Enables multi-page routing in SPA                          |
+| **react-leaflet**    | Wraps Leaflet.js for use with React                        |
+| **leaflet**          | Interactive map rendering                                  |
+| **axios**            | Handles all HTTP requests (GET, POST, PUT, DELETE)         |
+| **dotenv**           | Loads environment variables from `.env`                    |
+| **cors**             | Enables cross-origin requests between frontend and backend |
+| **@turf/turf**       | Performs spatial calculations (buffers, overlays, etc.)    |
+| **html2canvas**      | Captures map snapshots for export as image                 |
+| **jspdf**            | Converts images into downloadable PDF files                |
+| **concurrently**     | Runs frontend and backend together in development mode     |
+| **nodemon**          | Auto-restarts backend server on code changes               |
+| **eslint**           | Lints and enforces code style                              |
+| **react-dom**        | Renders React components to the DOM                        |
 
-## 🧪 Dev Dependencies
+## 🧪 Dev-Only Dependencies
 
-| Package                            | Purpose                                       |
-| ---------------------------------- | --------------------------------------------- |
-| `vite`                             | Frontend build tool and dev server            |
-| `nodemon`                          | Auto-reloads backend server on changes        |
-| `concurrently`                     | Runs frontend and backend in parallel for dev |
-| `eslint`, `@eslint/js`             | Linting rules                                 |
-| `eslint-plugin-react-hooks`        | Linting for React hooks                       |
-| `eslint-plugin-react-refresh`      | React Fast Refresh compatibility for ESLint   |
-| `@types/react`, `@types/react-dom` | Type hints for editor (even if TS not used)   |
-| `@vitejs/plugin-react`             | React plugin for Vite build process           |
-| `globals`                          | Defines global variables for ESLint           |
+These packages are used during development only (not bundled into production builds):
+
+| Package                         | Purpose                                                       |
+| ------------------------------- | ------------------------------------------------------------- |
+| **@vitejs/plugin-react**        | Enables fast refresh and JSX support with Vite                |
+| **@types/react**                | TypeScript type definitions for React                         |
+| **@types/react-dom**            | TypeScript type definitions for ReactDOM                      |
+| **@eslint/js**                  | Core ESLint configuration                                     |
+| **eslint**                      | JavaScript/React linter                                       |
+| **eslint-plugin-react-hooks**   | Lints rules of hooks usage in React                           |
+| **eslint-plugin-react-refresh** | Ensures proper setup for React Fast Refresh                   |
+| **globals**                     | Provides predefined global variables to ESLint                |
+| **nodemon**                     | Auto-restarts the backend server on file changes              |
+| **concurrently**                | Runs multiple commands/scripts at once (used in dev workflow) |
 
 ## 🧠 App Structure & Routing
 
