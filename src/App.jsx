@@ -16,7 +16,6 @@ import OffscreenMap from "./components/OffscreenMap.jsx";
 // 📄 Page Routes
 // ─────────────────────────────────────────────
 import Home from "./pages/Home.jsx";
-import Editor from "./pages/Editor.jsx";
 import Export from "./pages/Export.jsx";
 import Analysis from "./pages/Analysis.jsx"
 
@@ -25,8 +24,6 @@ import Analysis from "./pages/Analysis.jsx"
 // ─────────────────────────────────────────────
 const TILE_STYLES = {
   Standard: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-  Light: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-  Dark: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
   Terrain: "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
 };
 
@@ -68,7 +65,7 @@ function App() {
   // across all routes. This avoids reloading data or state between pages.
   //
   // For example:
-  // - Switching between Home, Editor, or Export keeps the same filtered markers.
+  // - Switching between Home, Export or Analysis keeps the same filtered markers.
   // - Shared components (e.g. MapPanel) remain mounted and responsive to updates.
   // - Only new route-specific panels (like modals or editors) get reloaded on navigation.
   //
@@ -131,16 +128,6 @@ function App() {
             element={<Home selectedLocation={selectedLocation} />}
           />
           <Route
-            path="/editor"
-            element={
-              <Editor
-                setMarkers={setMarkers}
-                selectedLocation={selectedLocation}
-                setSelectedLocation={setSelectedLocation}
-              />
-            }
-          />
-          <Route
             path="/export"
             element={
               <Export
@@ -155,9 +142,6 @@ function App() {
             element={
               <Analysis
               markers={markers}
-              setMarkers={setMarkers}
-              selectedLocation={selectedLocation}
-              setSelectedLocation={setSelectedLocation}
               setHeatMap={setHeatMap}
               />
             }
@@ -234,25 +218,7 @@ export default App;
 // ▶ Shared Input → FilterPanel.jsx
 // ▶ Shared Output → MapPanel.jsx
 
-// ── ✏️ DATA MANAGEMENT WORKFLOW (Editor Page) ──
-// Purpose: Add, edit, or delete location data — either as an admin tool or crowdsourced platform.
 
-// Modes of use:
-// - Open-source: anyone can contribute
-// - Restricted access: require admin login (e.g. for agencies or moderators)
-
-// Current setup is open-source, but can easily be secured by gating the Editor route.
-
-// ▶ Input → AddLocationModal.jsx (new data submission)
-// ▶ Input → EditLocationPanel.jsx (edit/update existing data)
-// ▶ Input → EditLocationPanel.jsx (delete location)
-// ▶ Shared Input → FilterPanel.jsx (test filters after changes)
-// ▶ Shared Output → MapPanel.jsx (see changes reflected immediately)
-
-// 🔄 Real-time validation:
-// - After edits, user can verify location changes visually
-// - Filter to confirm a tag or category was applied correctly
-// - Ensures map reflects the true state of the database without page reloads
 
 // ─────────────────────────────
 // 🔁 STREAM FLOW SUMMARIES
@@ -261,8 +227,8 @@ export default App;
 // Add Workflow:
 // Input → AddLocationModal.jsx → FilterPanel.jsx → MapPanel.jsx → Output
 
-// Edit Workflow:
-// Input → EditLocationModal.jsx → FilterPanel.jsx → MapPanel.jsx → Output
-
 // Export Workflow:
 // Input → FilterPanel.jsx → MapPanel.jsx → ExportPreviewModal.jsx → PDF
+
+// Analysis Workflow:
+// Input → AnalysisOptions.jsx → MapPanel.jsx → HeatMapLayer.jsx->Output

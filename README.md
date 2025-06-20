@@ -23,6 +23,7 @@ Built with:
 
    ```bash
    MONGO_URI=mongodb+srv://<yourUser>:<yourPassword>@yourcluster.mongodb.net/
+   VITE_API_URL=your-vite-api-base-url
    ```
 
    > 🔐 Do not commit your `.env` file — it is ignored by `.gitignore`.
@@ -106,8 +107,8 @@ The `App.jsx` file serves as the root of the application. It contains:
 - Global UI components like the **Header**, **MapPanel**, and **FilterPanel**
 - Route definitions for three main pages:
   - `/` → **Home Page**: View nearby resources
-  - `/editor` → **Editor Page**: Add, edit, or delete location data
   - `/export` → **Export Page**: Generate and export maps as PDFs
+    - `/analysis` → **Analysis Page**: Generate Heatmaps based on different metrics.
 
 These pages share global state (markers, filters, etc.) to avoid redundant reloads. Changing pages doesn’t reset filters or trigger new fetches unless needed.
 
@@ -153,13 +154,18 @@ Find free resources based on user-selected filters — without needing to search
 - Overlaying transit or mobility routes between locations
 - Adding seasonal or hourly resource awareness (e.g. warming centre in winter only)
 
-### ✏️ Data Management (Editor Page)
+### 📊 Data Analysis (Analysis Page)
+Analyze existing location data to identify patterns, gaps, and opportunities for improvement. Includes tools for:
 
-Edit resource data manually or crowdsource input. Possible configurations:
+Generating heatmaps based on available services, resources, or amenities
 
-- Open access (default)
-- Admin-restricted access (via login logic, not yet implemented)
-- Add, edit, or delete locations dynamically with live updates to the map
+Visualizing zone coverage using color-coded overlays (green = strong, red = weak)
+
+Filtering by service type to compare resource distribution across different needs
+
+Supporting decision-making for outreach planning, shelter placement, or infrastructure expansion
+
+Note: This page uses built-in score data and does not require user input or manual scoring. Admins can manage scores separately in the full version.
 
 ### 🖨 Export Tools (Export Page)
 
@@ -233,11 +239,7 @@ This app is not just a viewer — it lets admins or analysts interact with spati
 - Highlight problem areas (e.g., resource deserts or high-risk zones)
 - Plan spatial relationships (e.g., buffer zones, coverage gaps)
 
-### 2. **Data Management**
 
-- Use the editor to add, modify, or delete entries in real time
-- Sync changes with a backend database (e.g., MongoDB, Firebase, SQL)
-- Validate data visually before committing it (e.g., "is this factory too close to a residential zone?")
 
 ### 3. **Resource Management**
 
@@ -247,9 +249,9 @@ This app is not just a viewer — it lets admins or analysts interact with spati
 
 ### 4. **Analytical Insight**
 
+- Use the Analysis Page to explore built-in score data and visualize coverage quality
 - Apply layered filters to detect trends (e.g., "Which parks are accessible year-round AND within 10km of transit?")
-- Enable statistical overlay (heatmaps, zone scoring, corridor detection)
-- Use data export to generate reports for policy or research
+- Generate statistical overlays (e.g., heatmaps or service zones) to support outreach planning, grant writing, or public reports
 
 ---
 

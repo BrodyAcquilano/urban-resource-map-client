@@ -204,8 +204,6 @@ function FilterPanel({
             onChange={(e) => setTileStyle(e.target.value)}
           >
             <option value="Standard">Standard</option>
-            <option value="Light">Light</option>
-            <option value="Dark">Dark</option>
             <option value="Terrain">Terrain</option>
           </select>
         </label>

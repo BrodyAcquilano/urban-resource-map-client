@@ -9,7 +9,6 @@ function Header() {
       <div className="site-title">Urban Resource Map</div>
       <nav className="nav-links">
         <Link to="/">Home</Link>
-        <Link to="/editor">Editor</Link>
         <Link to="/export">Export</Link>
         <Link to="/analysis">Analysis</Link>
       </nav>

@@ -20,7 +20,7 @@ const [mapImage, setMapImage] = useState(null);
     <>
       {/* Editor Panel Toggle + Panel */}
       <button
-        className={`export-side-toggle editor-toggle ${
+        className={`export-side-toggle export-toggle ${
           showExportOptions ? "" : "collapsed-toggle"
         }`}
         onClick={() => setShowExportOptions(!showExportOptions)}
