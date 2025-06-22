@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as turf from "@turf/turf";
-import "./AnalysisOptions.css";
+import "../styles/panels.css";
 
 function AnalysisOptions({ markers, setHeatMap }) {
   //state for Proximity Influence Zones
@@ -41,26 +41,6 @@ function AnalysisOptions({ markers, setHeatMap }) {
     const upper = Math.ceil(index);
     if (lower === upper) return sorted[lower];
     return sorted[lower] + (index - lower) * (sorted[upper] - sorted[lower]);
-  };
-
-  const distributionGetScore = (marker) => {
-    let types = [];
-    if (distributionResourceType === "all") {
-      types = ["resources", "services", "amenities"];
-    } else if (distributionResourceType === "resources_amenities") {
-      types = ["resources", "amenities"];
-    } else if (distributionResourceType === "resources_services") {
-      types = ["resources", "services"];
-    } else if (distributionResourceType === "services_amenities") {
-      types = ["services", "amenities"];
-    } else {
-      types = [distributionResourceType];
-    }
-
-    const allScores = types.map((type) =>
-      calculateScore(marker.scores?.[type], marker[type])
-    );
-    return allScores.reduce((a, b) => a + b, 0) / allScores.length;
   };
 
   const cumulativeGetScore = (marker) => {
@@ -238,22 +218,21 @@ function AnalysisOptions({ markers, setHeatMap }) {
   };
 
   return (
-    <div className="options-panel">
-      <h2>Analysis Options</h2>
+    <div className="panel">
+      <div className="section">
+        <h2>Analysis Options</h2>
+      </div>
 
-      <div className="options-section">
+      <div className="section">
         <h3>Proximity Influence Zones</h3>
         <p className="tooltip">
           A measure of closeness. Having many locations close together is a good
           indicator of high resource value.
         </p>
 
-        <div className="analysis-buttons">
-          <button className="generate-button" onClick={handleGenerateProximity}>
-            Generate
-          </button>
+        <div className="buttons-container">
+          <button onClick={handleGenerateProximity}>Generate</button>
           <button
-            className="clear-button"
             onClick={() => {
               setHeatMap(null);
             }}
@@ -263,7 +242,7 @@ function AnalysisOptions({ markers, setHeatMap }) {
         </div>
       </div>
 
-      <div className="options-section">
+      <div className="section">
         <h3>Cumulative Resource Influence</h3>
 
         <p className="tooltip">
@@ -272,7 +251,7 @@ function AnalysisOptions({ markers, setHeatMap }) {
           different services.
         </p>
 
-        <div className="inputs">
+        <div className="form-group">
           <label>Resource Type:</label>
           <select
             value={cumulativeResourceType}
@@ -288,15 +267,9 @@ function AnalysisOptions({ markers, setHeatMap }) {
           </select>
         </div>
 
-        <div className="analysis-buttons">
+        <div className="buttons-container">
+          <button onClick={handleGenerateCumulative}>Generate</button>
           <button
-            className="generate-button"
-            onClick={handleGenerateCumulative}
-          >
-            Generate
-          </button>
-          <button
-            className="clear-button"
             onClick={() => {
               setHeatMap(null);
             }}
@@ -306,8 +279,8 @@ function AnalysisOptions({ markers, setHeatMap }) {
         </div>
       </div>
 
-      <div className="legend">
-        <h4>Color Legend:</h4>
+      <div className="section">
+        <h3>Color Legend:</h3>
         <ul>
           <li>
             <span></span> 🟢 = Well-Served / High Resource Zone

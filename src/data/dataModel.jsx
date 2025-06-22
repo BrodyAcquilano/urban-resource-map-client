@@ -60,7 +60,7 @@ export const services = [
   "Accessibility Services",
   "Transportation Services",
   "Daycare or child services",
-  "Drop-in Classes"
+  "Drop-in Classes",
 ];
 
 // Used in: FilterPanel.jsx, AddLocationModal.jsx, EditLocation.jsx, InfoPanel.jsx
@@ -68,7 +68,7 @@ export const amenities = [
   "Wi-Fi",
   "Outdoor Power Outlets",
   "Indoor Power Outlets",
-   "Storage/Lockers",
+  "Storage/Lockers",
   "Indoor Seating",
   "Outdoor Seating",
   "Pet Friendly",
@@ -107,22 +107,22 @@ export const resourceNotes = {
   "Cooling Centre": "Indoor space to stay cool during extreme heat",
   "Clean Air Space": "Shelter from smoke, pollution, or poor air quality",
   "Drinking Water": "Access to safe water for drinking or refilling bottles",
-  "Meals": "Prepared food provided for free or at low cost",
+  Meals: "Prepared food provided for free or at low cost",
   "Shelter Space": "Place to sleep overnight, may have limited capacity",
-  "Washrooms": "Toilets available for public use",
+  Washrooms: "Toilets available for public use",
   "Hygiene Products": "Free soap, toothbrushes, or other hygiene supplies",
   "Tampons or Pads": "Free menstrual products available",
-  "Showers": "Facilities to bathe or freshen up",
+  Showers: "Facilities to bathe or freshen up",
   "Community Centre": "Public building with programs or general support",
   "Food Bank": "Free groceries or non-perishable food available",
-  "Clothing": "Free or low-cost clothes, sometimes seasonal",
-  "Laundry": "Washer and dryer access, may be supervised or self-serve",
+  Clothing: "Free or low-cost clothes, sometimes seasonal",
+  Laundry: "Washer and dryer access, may be supervised or self-serve",
 };
 
 // Used in: AddLocationModal.jsx
 export const serviceNotes = {
   "Health Services": "General medical care",
-  "Hospital": "Emergency health services",
+  Hospital: "Emergency health services",
   "Mental Health Services": "Counseling or crisis support",
   "Addiction Services": "Substance use support",
   "Harm Reduction Services": "Supplies or education",
@@ -133,24 +133,28 @@ export const serviceNotes = {
   "Identification Services": "Help obtaining IDs or documents",
   "Interpretation Services": "Language support",
   "Community Outreach": "Street outreach and mobile help",
-  "Accessibility Services": "Help navigating barriers or providing accessible equipment",
-  "Transportation Services": "Public transportation terminal or intercity bus stop",
-  "Daycare or child services": "Childminding, early learning, or parent relief available",
-  "Drop-in Classes": "Casual educational or creative sessions open to the public",
+  "Accessibility Services":
+    "Help navigating barriers or providing accessible equipment",
+  "Transportation Services":
+    "Public transportation terminal or intercity bus stop",
+  "Daycare or child services":
+    "Childminding, early learning, or parent relief available",
+  "Drop-in Classes":
+    "Casual educational or creative sessions open to the public",
 };
 
 // Used in: AddLocationModal.jsx
 export const amenityNotes = {
   "Wi-Fi": "Public wireless internet access",
-  "Outdoor Power Outlets":"Public electrical outlets available outside",
-  "Indoor Power Outlets":"Electrical outlets available indoors",
-  "Storage/Lockers":"Secure space to store personal belongings",
+  "Outdoor Power Outlets": "Public electrical outlets available outside",
+  "Indoor Power Outlets": "Electrical outlets available indoors",
+  "Storage/Lockers": "Secure space to store personal belongings",
   "Indoor Seating": "Safe indoor places to sit and rest",
   "Outdoor Seating": "Benches or sheltered outdoor areas",
   "Pet Friendly": "Allows animals or has accommodations for pets",
   "Quiet Space": "Noise-free or calm areas for rest or focus",
   "Public Computer Access": "Workstations with internet or tools",
-  "Library": "Books, reading space, or educational resources",
+  Library: "Books, reading space, or educational resources",
   "Art or Music Programs": "Creative drop-ins or workshops",
   "Exercise Space": "Room to walk, stretch, or do light fitness",
   "Social Space": "Supports informal interaction or community",
@@ -160,20 +164,22 @@ export const amenityNotes = {
   "No Purchases Required": "You can access this space without buying something",
   "Coffee Shop": "Offers seating or Wi-Fi, usually requires a purchase",
   "Shopping Centre": "Malls or plazas you can walk around or hang out",
-  "Restaurant": "Prepared meals available, typically for purchase",
-  "Groceries": "Fresh or packaged food available to buy",
+  Restaurant: "Prepared meals available, typically for purchase",
+  Groceries: "Fresh or packaged food available to buy",
   "Public Access": "Open to everyone without restriction",
   "Request Access": "You must ask or sign up before using resources",
   "All Ages": "Available to people of any age",
   "Senior Centre": "Primarily serves seniors (ages 55+ or 65+)",
   "Youth Centre": "Primarily serves youth (typically under 25)",
-  "Printers": "Print documents here, may require staff help or small fee",
-   "Phone Access":"Landline, payphone, or shared phone available for calls",
+  Printers: "Print documents here, may require staff help or small fee",
+  "Phone Access": "Landline, payphone, or shared phone available for calls",
   "Community Fridge": "A shared fridge where anyone can take or leave food",
   "Little Library": "Free book exchange - take one, leave one",
-  "Park or scenic area" : "Outdoor space with greenery, shade, or natural beauty",
-  "Art Display Space":"Public exhibits featuring community art or creative work",
-  "Vending Machines":"Snacks or drinks available for purchase onsite",
+  "Park or scenic area":
+    "Outdoor space with greenery, shade, or natural beauty",
+  "Art Display Space":
+    "Public exhibits featuring community art or creative work",
+  "Vending Machines": "Snacks or drinks available for purchase onsite",
   "Microwave Access": "You can heat up food here",
 };
 
@@ -202,7 +208,7 @@ export const initialLocationData = {
   resources: Object.fromEntries(resources.map((label) => [label, false])),
   services: Object.fromEntries(services.map((label) => [label, false])),
   amenities: Object.fromEntries(amenities.map((label) => [label, false])),
-   scores: JSON.parse(JSON.stringify(defaultScores)),
+  scores: JSON.parse(JSON.stringify(defaultScores)),
 };
 
 // Used in: EditLocation.jsx and EditScoreModal.jsx for initializing states to the values from the selected Location.
@@ -245,8 +251,6 @@ export function getSafeLocationData(raw = {}) {
     },
   };
 }
-
-
 
 // ────────────────
 // Utility Functions
@@ -344,31 +348,6 @@ export function validateOpenCloseTimes(openHours, isLocationOpen) {
 
   return true;
 }
-
-// ────────────────
-// Rendering Helpers
-// ────────────────
-
-// Used in: InfoPanel.jsx for displaying only checked items.
-//Edit this if you want the information displayed differently.
-//Like sorting labels alphabetically
-export const renderCheckedItems = (data, labelList, title) => {
-  const checked = labelList.filter((label) => data?.[label]);
-  return (
-    <>
-      <h3>{title}</h3>
-      {checked.length ? (
-        <ul>
-          {checked.map((label) => (
-            <li key={label}>{label}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>No {title.toLowerCase()} listed</p>
-      )}
-    </>
-  );
-};
 
 /* 
 ────────────────────────────────────────────────────

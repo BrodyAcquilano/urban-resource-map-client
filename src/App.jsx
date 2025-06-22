@@ -20,6 +20,11 @@ import Export from "./pages/Export.jsx";
 import Analysis from "./pages/Analysis.jsx";
 
 // ─────────────────────────────────────────────
+// 🎨  Style Imports
+// ─────────────────────────────────────────────
+import "./styles/App.css";
+
+// ─────────────────────────────────────────────
 // 🗺 Tile Style Options (Leaflet + OpenStreetMap)
 // ─────────────────────────────────────────────
 const TILE_STYLES = {
@@ -194,7 +199,6 @@ export default App;
 // ▶ Input → FilterPanel.jsx (user filters)
 // ▶ Output → MapPanel.jsx (filtered markers on map)
 
-
 // ── 📄 EXPORT WORKFLOW (Export Page) ──
 // Purpose: Share map data with others — especially those without digital access or with accessibility needs.
 
@@ -214,7 +218,6 @@ export default App;
 // ▶ Output → OffscreenMap.jsx (snapshot layer)
 // ▶ Output → ExportPreviewModal.jsx (PDF preview/export)
 
-
 // ── 📊 ANALYSIS WORKFLOW (Analysis Page) ──
 // Purpose: View and update score-based overlays used in resource analysis and planning.
 
@@ -233,7 +236,6 @@ export default App;
 // ▶ Shared Output → MapPanel.jsx
 // ▶ Output → HeatMapLayer.jsx (overlay visualization)
 
-
 // ─────────────────────────────
 // 🔁 STREAM FLOW SUMMARIES
 // ─────────────────────────────
@@ -246,4 +248,3 @@ export default App;
 
 // Analysis Workflow:
 // Input → Database → AnalysisOptions.jsx → MapPanel.jsx → HeatMapLayer.jsx → Output
-
