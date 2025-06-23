@@ -144,6 +144,20 @@ When using this app, the **MongoDB database name and collection name are importa
 
    You will need to update every instance of `db.collection("locations")` to your custom collection name.
 
+   ***
+
+## 🚨 Important Note:
+
+The term `locations` is used **in two different contexts:**
+
+- **MongoDB Collection Name:**  
+  This is the actual name of your data storage collection.
+- **API Route Name:**  
+  Example: `axios.get("/api/locations")`  
+  This is just a frontend/backend URL convention. It is unrelated to your MongoDB collection name.
+
+> 🔑 **You can change the collection name, but you should not change the API route name unless you fully understand the backend routing system.**
+
 ---
 
 ## 🧱 Tech Stack
