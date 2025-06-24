@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import InfoPanel from "../components/InfoPanel.jsx";
 import '../styles/pages.css';
 
-function Home({ selectedLocation }) {
+function Home({ selectedLocation, currentSchema }) {
   const [showInfo, setShowInfo] = useState(false);
 
   return (
@@ -21,10 +21,11 @@ function Home({ selectedLocation }) {
           showInfo ? "" : "collapsed"
         }`}
       >
-        <InfoPanel selectedLocation={selectedLocation}/>
+        <InfoPanel selectedLocation={selectedLocation} currentSchema={currentSchema}/>
       </div>
     </>
   );
 }
 
 export default Home;
+

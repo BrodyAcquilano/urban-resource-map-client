@@ -3,8 +3,9 @@ import AnalysisOptions from "../components/AnalysisOptions.jsx";
 import '../styles/pages.css';
 
 function Analysis({
-  markers,
+  markers, 
   setHeatMap,
+  currentSchema,
 }) {
   const [showOptions, setShowOptions] = useState(false);
 
@@ -24,10 +25,11 @@ function Analysis({
           showOptions ? "" : "collapsed"
         }`}
       >
-        <AnalysisOptions markers={markers} setHeatMap={setHeatMap} />
+        <AnalysisOptions markers={markers} setHeatMap={setHeatMap} currentSchema={currentSchema}/>
       </div>
     </>
   );
 }
 
 export default Analysis;
+
