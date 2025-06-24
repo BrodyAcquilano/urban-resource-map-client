@@ -66,7 +66,9 @@ function AnalysisOptions({ markers, setHeatMap, currentSchema }) {
 
   const handleGenerateProximity = () => {
     const allPoints = markers.map((m) =>
-      turf.point([parseFloat(m.longitude), parseFloat(m.latitude)], { marker: m })
+      turf.point([parseFloat(m.longitude), parseFloat(m.latitude)], {
+        marker: m,
+      })
     );
 
     const bbox = turf.bbox(turf.featureCollection(allPoints));
@@ -223,7 +225,8 @@ function AnalysisOptions({ markers, setHeatMap, currentSchema }) {
       <div className="section">
         <h3>Proximity Influence Zones</h3>
         <p className="tooltip">
-          Measures closeness. Clusters of nearby locations are a good indicator of high resource zones.
+          Measures closeness. Clusters of nearby locations are a good indicator
+          of high resource zones.
         </p>
 
         <div className="buttons-container">
@@ -262,10 +265,10 @@ function AnalysisOptions({ markers, setHeatMap, currentSchema }) {
       <div className="section">
         <h3>Color Legend:</h3>
         <ul>
-          <li><span></span> 🟢 = Well-Served / High Resource Zone</li>
-          <li><span></span> 🟡 = Moderately Served / Stable but Limited</li>
-          <li><span></span> 🟠 = Under-Served / Needs Attention</li>
-          <li><span></span> 🔴 = Critical Shortage / Resource Desert</li>
+          <li>🟢 = Well-Served / High Resource Zone</li>
+          <li>🟡 = Moderately Served / Stable but Limited</li>
+          <li>🟠 = Under-Served / Needs Attention</li>
+          <li>🔴 = Critical Shortage / Resource Desert</li>
         </ul>
       </div>
     </div>
