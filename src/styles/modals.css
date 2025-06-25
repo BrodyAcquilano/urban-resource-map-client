@@ -2,7 +2,6 @@
 /* Used for General Styling  and Layout         */
 /*──────────────────────────────────────────────*/
 
-
 /*Used in:  ExportPreviewModal.jsx*/
 .modal-overlay {
   position: fixed;
@@ -10,10 +9,10 @@
   bottom: 0;
   left: 0;
   right: 0;
-  width: 52vw;             
-  max-width: 90vw; 
+  width: 52vw;
+  max-width: 90vw;
   padding: 2vh 2vw;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 2000;
@@ -41,15 +40,13 @@
   }
 }
 
-
-
 /*Used in: ExportPreviewModal.jsx*/
 .offcenter-modal-overlay {
   margin-left: 10%;
 }
 
 /*Used in:  ExportPreviewModal.jsx*/
- .modal {
+.modal {
   width: 50vw;
   max-width: 100%;
   font-family: sans-serif;
@@ -71,7 +68,7 @@
 @media (max-width: 600px) {
   /* Used in: ExportPreviewModal */
   .modal-overlay.offcenter-modal-overlay {
-    margin: auto;      
+    margin: auto;
     width: 95vw;
   }
 
@@ -79,16 +76,14 @@
   .modal {
     width: 92vw;
   }
-
 }
 
-
-  /*Used in:  ExportPreviewModal.jsx*/
+/*Used in:  ExportPreviewModal.jsx*/
 .modal .close-button {
   position: absolute;
   top: 10px;
   right: 14px;
-  background:none;
+  background: none;
   border: none;
   font-size: 1.5rem;
   color: #ff4d4d;
@@ -104,8 +99,6 @@
   font-weight: 500;
   font-size: 0.9rem;
 }
-
-
 
 /* Used in: ExportPreviewModal.jsx*/
 .buttons-container {
@@ -130,8 +123,6 @@
 .buttons-container button:hover {
   background-color: #2b8258;
 }
-
-
 
 /*──────────────────────────────────────────────*/
 /* Used in: ExportPreviewModal.jsx              */
@@ -278,18 +269,4 @@
   font-style: italic;
   color: #888;
   margin-top: 1em;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 6px;
-}
-
-.form-group label {
-  display: block;
-  font-size: 0.9rem;
-  color: rgb(59, 71, 63);
-  font-weight: 500;
-  margin-bottom: 6px;
 }
