@@ -29,6 +29,18 @@
   direction: ltr;
 }
 
+/*Used in: SettingsModal.jsx*/
+.centered-modal-overlay {
+  margin: auto;
+}
+
+/*Used in: SettingsModal.jsx*/
+@media (max-width: 600px) {
+  .modal-overlay.centered-modal-overlay {
+    width: 95vw;
+  }
+}
+
 
 
 /*Used in: ExportPreviewModal.jsx*/
@@ -234,3 +246,50 @@
   color: #000000;
 }
 
+/*──────────────────────────────────────────────*/
+/* Used in: SettingsModal.jsx                   */
+/*──────────────────────────────────────────────*/
+
+/*Used in: SettingsModal.jsx*/
+.modal input {
+  width: 100%;
+  padding: 3px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  background-color: rgba(93, 129, 117, 1);
+  color: white;
+  font-size: 0.7rem;
+}
+
+.modal input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.modal h2 {
+  font-size: 1.6rem;
+}
+
+.modal h3 {
+  font-size: 1.2rem;
+}
+
+.empty-message {
+  font-style: italic;
+  color: #888;
+  margin-top: 1em;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 6px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  color: rgb(59, 71, 63);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
