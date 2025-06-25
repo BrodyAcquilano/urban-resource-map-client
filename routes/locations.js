@@ -43,3 +43,5 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch locations" });
   }
 });
+
+export default router;
